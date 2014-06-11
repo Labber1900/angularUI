@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html ng-app = "ui">
+<head lang = "en">
+    <meta charset = "UTF-8">
+    <title></title>
+    <link href = "../css/tree.css" rel = "stylesheet" type = "text/css">
+    <link href = "../css/bootstrap.min.css" rel = "stylesheet" type = "text/css">
+</head>
+<body>
+<div style = "margin: 16px;" ng-controller = "controller">
+    <tree checkboxTree lazyTree data = "treeData" check = "onCheck" click = "onClick" value = "value" load = "load"></tree>
+
+    <div>
+        {{value}}
+    </div>
+
+    <div style = "border:1px solid;height: 100px;width:100%">
+        {{message}}
+    </div>
+</div>
+<script>
+    function controller($scope) {
+        $scope.value = null;
+        $scope.message = "nothing...";
+        $scope.load = function(parent){
+            var result = [],guid = function () {
+                function S4() {
+                    return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+                }
+                return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+            };
+            for(var i=0;i<Math.random() * 5;i++){
+                var id = guid();
+                result.push({
+                    id : id,
+                    text : parent.text + '子节点'+ i,
+                    children:[]
+                });
+            }
+
+            return result;
+        };
+        $scope.onCheck = function (node, checked) {
+            if (checked) {
+                $scope.$apply(function () {
+                    $scope.message = node.text + " 选中";
+                });
+            } else {
+                $scope.$apply(function () {
+                    $scope.message = node.text + " 取消";
+                });
+            }
+
+        };
+
+        $scope.onClick = function (node) {
+            $scope.$apply(function () {
+                $scope.message = node.text + " 选中";
+            });
+        };
+        $scope.treeData = {
+            id: "1",
+            text: 'treeNode0',
+            children: [
+                {
+                    id: "11",
+                    text: "treeNode1",
+                    children: [
+                        {
+                            id: "111",
+                            text: "treeNode11",
+                            children : [
+
+                            ]
+                        },
+                        {
+                            id: "112",
+                            text: "treeNode12",
+                            children: [
+                                {
+                                    id: "1121",
+                                    text: "treeNode121"
+                                },
+                                {
+                                    id: "1122",
+                                    text: "treeNode122",
+                                    children : []
+                                },
+                                {
+                                    id: "1123",
+                                    text: "treeNode123"
+                                }
+                            ]
+                        },
+                        {
+                            id: "113",
+                            text: "treeNode13",
+                            children : []
+                        }
+                    ]
+                },
+                {
+                    id: "12",
+                    text: "treeNode2",
+                    children: [
+                        {
+                            id: "121",
+                            text: "treeNode21"
+                        },
+                        {
+                            id: "122",
+                            text: "treeNode22"
+                        },
+                        {
+                            id: "123",
+                            text: "treeNode23"
+                        }
+                    ]
+                },
+                {
+                    id: "13",
+                    text: "treeNode3",
+                    children: [
+                        {
+                            id: "131",
+                            text: "treeNode31"
+                        },
+                        {
+                            id: "132",
+                            text: "treeNode32"
+                        },
+                        {
+                            id: "133",
+                            text: "treeNode33"
+                        }
+                    ]
+                }
+            ]
+        };
+    }
+</script>
+<script type = "text/javascript" src = "../js/libs/angular.min.js"></script>
+<script type = "text/javascript" src = "../js/directive.js"></script>
+<script type = "text/javascript" src = "../js/libs/jquery-2.1.1.min.js"></script>
+<script type = "text/javascript" src = "../js/libs/handlebars-v1.3.0.js"></script>
+</body>
+</html>

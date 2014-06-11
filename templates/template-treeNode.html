@@ -1,0 +1,22 @@
+<li class = "treeNode closed unCheck" id = "{{id}}"><div>
+    {{#blank this}}
+    <span class = "glyphicon"></span>
+    {{/blank}}
+    {{#isFolder this}}
+    <span class = "glyphicon collapse"></span>
+    {{/isFolder}}
+    {{#isLeaf this}}
+    <span class = "glyphicon"></span>
+    {{/isLeaf}}
+    {{#checkboxTree this}}
+    <span class = "glyphicon selector" node = "{{id}}"></span>
+    {{/checkboxTree}}
+    {{#isFolder}}
+    <span class = "glyphicon folder"></span>
+    {{/isFolder}}
+    {{#isLeaf this}}
+    <span class = "glyphicon file"></span>
+    {{/isLeaf}}
+    <span>{{text}}</span>
+</div>
+<ul id = "c-{{id}}">{{#children}}{{>treeNode}}{{/children}}</ul></li>

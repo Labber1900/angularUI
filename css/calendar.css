@@ -1,0 +1,58 @@
+.calendar {
+    padding: 0 8px 8px 8px;
+    background-color: #FFFFFF;
+}
+
+.calendar .glyphicon-play-left{
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    filter: FlipH;
+}
+
+.calendar table {
+    width: 210px;
+    cursor: default;
+}
+
+.calendar table td {
+    cursor: default;
+}
+
+.calendar table td .weekend {
+    background-color:#F5F5F5;
+}
+
+.calendar table td .today {
+   color: #CB6C6B;
+
+}
+
+.calendar table td .date {
+    font-size:8px;
+    cursor: pointer;
+}
+.calendar table td .date:hover {
+    background-color: #CB6C6B;
+    color: #ffffff;
+}
+
+.calendar table td .selected{
+    background-color: #CB6C6B;
+    color: #ffffff;
+}
+
+.calendar table thead tr {
+    border-bottom: 1px solid #B0B0B0;
+}
+
+.calendar table th {
+    font-size:4pt;
+    color: #B9B9B9;
+    text-align: center;
+}
+
+.calendar table td .extra {
+    color: #B0B0B0;
+}
