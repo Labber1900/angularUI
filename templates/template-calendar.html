@@ -1,0 +1,30 @@
+<div class="calendar">
+    <table>
+        <tr>
+            <td>
+                <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-default" ng-click="lastMonth()"><span
+                            class="glyphicon glyphicon-play glyphicon-play-left"></span></button>
+                    <button type="button" class="btn btn-default" ng-click="toToday()">今天</button>
+                    <button type="button" class="btn btn-default" ng-click="nextMonth()"><span
+                            class="glyphicon glyphicon glyphicon-play"></span></button>
+                </div>
+            </td>
+            <td align="right"><h4><span>{{year}}年{{month + 1}}月</span></h4></td>
+        </tr>
+    </table>
+    <table>
+        <thead>
+        <tr>
+            <th ng-repeat="text in weeks">{{text}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="week in days">
+            <td ng-repeat="day in week" align="center" >
+                <div ng-bind="day|date:'d'" class="date" ng-click="select(day)" ng-class="{today:day.toString()==today.toString(),weekend:day.getDay() ==0 || day.getDay() ==6,extra:day.getTime()<first.getTime() || day.getTime() > end.getTime(),selected:day.toString()==selected.toString() && day.toString() != today.toString()}"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
