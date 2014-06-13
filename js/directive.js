@@ -1,7 +1,7 @@
 /**
  * Created by obladi on 14-6-5.
  */
-angular.module("ui", [])
+angular.module("ui",[])
     .factory("Handlebars", function () {
         return Handlebars;
     })
@@ -411,27 +411,49 @@ angular.module("ui", [])
    /*
     * container
     */
-    .directive("vgroup",["$compile",function($compile){
+    .directive("vgroup",function($compile){
         return {
-            restrict : "E",
-            transclude : true,
-            link : function($scope,element,attrs,ctrl,$transclude){
-                var contents = [];
-                $transclude(function(clone) {
-                    console.log(clone);
-                    angular.forEach(clone,function(value){
-                        if(value.nodeType != 3){
-                            contents.push(value.outerHTML);
+            restrict: "E",
+            transclude: true,
+            replace: true,
+            link : function($scope,element,attrs,ctrl,transclude){
+                var content = element.html();
+                $(element).empty();
+                transclude(function (clone) {
+                    angular.forEach(clone, function (value) {
+                            if (value.nodeType != 3) {
+                                $(element).append($(content).append(value))
+                            }
                         }
-                    });
+                    );
                 });
-                $scope.contents = contents;
-                console.log(element.contents());
+                $compile(element.contents())($scope);
             },
-            templateUrl : "../templates/template-vGroup.html"
+            templateUrl: "../templates/template-vgroup.html"
         };
-    }])
-
+    })
+    .directive("hgroup",function($compile){
+        return {
+            restrict: "E",
+            transclude: true,
+            replace: true,
+            link : function($scope,element,attrs,ctrl,transclude){
+                var content = element.html();
+                $(element).empty();
+                transclude(function (clone) {
+                    angular.forEach(clone, function (value) {
+                            if (value.nodeType != 3) {
+                                $(element).append($(content).addClass("item").append(value))
+                            }
+                        }
+                    );
+                    $(element).append($(content).addClass('last'));
+                });
+                $compile(element.contents())($scope);
+            },
+            templateUrl: "../templates/template-hgroup.html"
+        };
+    })
     /*
      * class directive
      */
@@ -454,16 +476,6 @@ angular.module("ui", [])
                 }).focusin(function () {
                     $window.clearTimeout(timer);
                 });
-            }
-        };
-    })
-
-   .directive("groupItem",function(){
-        return {
-            restrict: 'AC',
-            require : ["vgroup"],
-            link : function($scope,element){
-               element.contents();
             }
         };
     })
