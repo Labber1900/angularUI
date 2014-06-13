@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app = "ui">
+<head lang = "en">
+  <meta charset = "UTF-8">
+  <title></title>
+    <link href = "../css/bootstrap.min.css" rel = "stylesheet" type = "text/css">
+    <link href = "../css/group.css" rel="stylesheet" type="text/css">
+</head>
+<body ng-controller="controller">
+<h4>VGroup:</h4>
+<VGroup>
+    <input type="text" ng-model="value1"/>
+    <div style="border:1px solid red;width: 300px;height:40px">
+    {{value2}}
+    </div>
+    <input type="text" ng-model="value3"/>
+    <input type="text" ng-model="value4"/>
+</VGroup>
+<br/>
+<h4>HGroup:</h4>
+<HGroup>
+    <input type="text" ng-model="value1"/>
+    <div style="border:1px solid red;width: 300px;height:40px">
+    {{value2}}
+    </div>
+    <input type="text" ng-model="value3"/>
+    <input type="text" ng-model="value4"/>
+</HGroup>
+
+<script>
+
+    var controller = function($scope){
+        $scope.value1 = 'item1';
+        $scope.value2 = 'item2';
+        $scope.value3 = 'item3';
+        $scope.value4 = 'item4';
+    }
+
+</script>
+<script type = "text/javascript" src = "../js/libs/angular.min.js"></script>
+<script type = "text/javascript" src = "../js/directive.js"></script>
+<script type = "text/javascript" src = "../js/libs/jquery-2.1.1.min.js"></script>
+</body>
+</html>

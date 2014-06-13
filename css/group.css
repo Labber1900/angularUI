@@ -1,0 +1,21 @@
+ul.vGroup,ul.hGroup {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+
+ul.hGroup > li.item {
+    float:left;
+    *display: inline-block;
+    display: inline;
+    overflow: hidden;
+}
+
+ul.hGroup > li.last {
+    clear:both;
+    height:0;
+    margin: 0;
+    padding: 0;
+}
