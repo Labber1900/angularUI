@@ -418,11 +418,11 @@ angular.module("ui",[])
             replace: true,
             link : function($scope,element,attrs,ctrl,transclude){
                 var content = element.html();
-                $(element).empty();
                 transclude(function (clone) {
+                    $(element).empty();
                     angular.forEach(clone, function (value) {
                             if (value.nodeType != 3) {
-                                $(element).append($(content).append(value))
+                                $(element).append($(content).append(value));
                             }
                         }
                     );
@@ -439,19 +439,45 @@ angular.module("ui",[])
             replace: true,
             link : function($scope,element,attrs,ctrl,transclude){
                 var content = element.html();
-                $(element).empty();
                 transclude(function (clone) {
+                    $(element).empty();
                     angular.forEach(clone, function (value) {
                             if (value.nodeType != 3) {
-                                $(element).append($(content).addClass("item").append(value))
+                                $(element).append($(content).append(value));
                             }
                         }
                     );
-                    $(element).append($(content).addClass('last'));
                 });
                 $compile(element.contents())($scope);
             },
             templateUrl: "../templates/template-hgroup.html"
+        };
+    })
+    .directive("gridlayout", function ($compile) {
+        return {
+            restrict: "E",
+            transclude: true,
+            link: function ($scope, element, attrs, ctrl, transclude) {
+                var column = attrs.column ? Number(attrs.column) : 1;
+                $(element).empty();
+                transclude(function (clone) {
+                    var number = 0,vGroup =  $("<VGroup></VGroup>") ,hGroup = $("<HGroup></HGroup>");
+                    $(element).append(vGroup.append(hGroup));
+                    angular.forEach(clone, function (value) {
+                            if (value.nodeType != 3) {
+                                if(number != 0 && (number % column == 0)){
+                                    vGroup =  $("<VGroup></VGroup>") ;
+                                    hGroup = $("<HGroup></HGroup>");
+                                    $(element).append(vGroup.append(hGroup));
+                                }
+                                number ++;
+                                hGroup.append(value);
+                            }
+                        }
+                    );
+                });
+                $compile(element.contents())($scope);
+            }
         };
     })
     /*
