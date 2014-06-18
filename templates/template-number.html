@@ -1,0 +1,10 @@
+<div class="form-item">
+    <input type = "text" class = "form-control" placeholder = "{{placeholder}}" ng-model = "value" ng-required="required" float>
+    <div ng-show="field.$dirty && field.$invalid">
+      <span ng-show="field.$error.integer" class="text-danger msg">only integer.</span>
+      <span ng-show="field.$error.float" class="text-danger msg">only float.</span>
+      <span ng-show="field.$error.required && !field.$error.float && !field.$error.integer" class="text-danger msg">can't be null.</span>
+      <span ng-show="field.$error.min || field.$error.max" class="text-danger msg">The value must be in range {{min}} to {{max}}!.</span>
+    </div>
+    <span ng-show="value" class="text-info msg">{{value | number:fractionSize}}</span>
+</div>

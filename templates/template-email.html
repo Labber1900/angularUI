@@ -1,0 +1,7 @@
+<div>
+    <input type = "email" class = "form-control"  placeholder = "{{placeholder}}" ng-model = "value" ng-required="required">
+    <div ng-show="field.$dirty && field.$invalid">
+      <span ng-show="field.$error.required" class="text-danger">Tell us your email.</span>
+      <span ng-show="field.$error.email" class="text-danger">This is not a valid email.</span>
+    </div>
+</div>

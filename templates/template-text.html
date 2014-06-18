@@ -1,0 +1,8 @@
+<div>
+    <input type = "text" class = "form-control" placeholder = "{{placeholder}}" ng-model = "value" ng-required="required">
+    <div ng-show="field.$dirty && field.$invalid">
+      <span ng-show="field.$error.required" class="text-danger">Tell us your.</span>
+      <span ng-show="field.$error.maxlength" class="text-danger">to long {{maxlength}}.</span>
+      <span ng-show="field.$error.minlength" class="text-danger">to short {{minlength}}.</span>
+    </div>
+</div>

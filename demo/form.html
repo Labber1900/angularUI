@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="ui">
+<head lang = "en">
+  <meta charset = "UTF-8">
+  <title></title>
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+</head>
+<body ng-controller="controller">
+<form name="form" novalidate class="css-form" style="padding: 16px">
+    <label>纳税人名称：</label>
+    <text placeholder="纳税人名称" name="name" value="NSR_MC" minlength="2" maxlength="10" required default="defaultValue"></text>
+    <br/>
+    <label>纳税人邮箱：</label>
+    <email placeholder="纳税人邮箱" name="email" value="email" required></email>
+    <br/>
+    <label>实缴金额：</label>
+    <number placeholder="实缴金额" name="SJJE_JE" fractionSize="6" value="SJJE_JE"  min="0" max="1000000000000" required></number>
+    <br/>
+    <label>应征金额：</label>
+    <money  placeholder="应征金额" name="YZSE_JE" symbol="$" value="YZSE_JE" min="0" max="1000000000000" required></money>
+</form>
+<script>
+    function controller($scope){
+         $scope.email = "";
+         $scope.NSR_MC = "";
+         $scope.SJJE_JE = null;
+         $scope.YZSE_JE = null;
+        $scope.defaultValue = "sdfsdfsdf";
+         $scope.submit = function(){
+
+        }
+    }
+</script>
+<script type="text/javascript" src="../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../js/libs/angular.min.js"></script>
+<script type="text/javascript" src="../js/directive.js"></script>
+</body>
+</html>
