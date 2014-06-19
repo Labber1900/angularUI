@@ -8,7 +8,7 @@ require.config({
         "angular": "libs/angular.min",
         "Handlebars": "libs/handlebars-v1.3.0",
         "prototype": "prototype",
-        "directive": "directive"
+        "app": "module"
     },
     shim: {
         'angular': {'exports': 'angular'},

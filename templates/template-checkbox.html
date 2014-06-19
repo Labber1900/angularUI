@@ -1,6 +1,6 @@
-<div ng-repeat="item in data" ng-class="{'checkbox':true,'checkbox-inline':false}">
-  <label>
-    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" ng-checked="">
-    {{item.text}}
+<div>
+  <label ng-repeat-start = "item in data" ng-class = "{'checkbox':!inline,'checkbox-inline':inline}">
+    <input type = "checkbox" name = "{{name}}" value = "{{item.id}}" ng-checked = "value.indexOf(item) > -1" ng-click="onCheck(item)">{{item.text}}
   </label>
+  <p ng-repeat-end ng-if = "inline>0 && ($index + 1) % inline == 0"/>
 </div>

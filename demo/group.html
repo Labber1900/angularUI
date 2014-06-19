@@ -30,8 +30,9 @@
 </HGroup>
 
 <script>
-   require(["directive"],function(module){
-       module.controller("controller",function($scope){
+   require(["app"],function(app){
+       var ui = new app("ui");
+       ui.controller("controller",function($scope){
            $scope.value1 = 'item1';
            $scope.value2 = 'item2';
            $scope.value3 = 'item3';

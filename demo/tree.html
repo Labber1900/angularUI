@@ -21,7 +21,8 @@
     </div>
 </div>
 <script>
-    require(["directive"],function(module){
+    require(["app"],function(app){
+        var ui = new app("ui");
         module.controller("controller",function($scope){
             $scope.value = null;
             $scope.message = "nothing...";
@@ -144,7 +145,7 @@
     });
 </script>
 <script type = "text/javascript" src = "../js/libs/angular.min.js"></script>
-<script type = "text/javascript" src = "../js/directive.js"></script>
+<script type = "text/javascript" src = "../js/module.js"></script>
 <script type = "text/javascript" src = "../js/libs/jquery-2.1.1.min.js"></script>
 <script type = "text/javascript" src = "../js/libs/handlebars-v1.3.0.js"></script>
 </body>

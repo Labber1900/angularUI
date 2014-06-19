@@ -28,8 +28,9 @@
     {{myForm.$valid}}
 </form>
 <script>
-    require(["directive"],function(module){
-        module.controller("controller",function($scope){
+    require(["app"],function(app){
+        var ui = new app("ui");
+        ui.controller("controller",function($scope){
             $scope.email = "hu-bo@neusoft.com";
             $scope.password = "";
             $scope.NSR_MC = "";

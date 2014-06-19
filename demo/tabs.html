@@ -24,7 +24,9 @@
     </pane>
 </tabs>
 <script>
-    require(["directive"]);
+    require(["app"],function(app){
+        new app("ui");
+    });
 </script>
 </body>
 </html>

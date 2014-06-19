@@ -14,8 +14,9 @@
     <date ng-model = "date" format = "yyyy年MM月dd日"></date>
 </div>
 <script>
-    require(["directive"], function (module) {
-        module.controller("controller", function ($scope) {
+    require(["app"], function (app) {
+        var ui = new app("ui");
+        ui.controller("controller", function ($scope) {
             $scope.date = new Date(2014, 5, 1);
         });
     });

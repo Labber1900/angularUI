@@ -9,18 +9,18 @@
 </head>
 <body ng-controller = "controller" style="padding: 16px;">
 <h4>纵向排列：</h4>
-<checkbox data="data" value="result" name="mz"></checkbox>
+<radio data="data" value="result" name="mz"></radio>
 <br/>
 <h4>横向排列：</h4>
-<checkbox data="data" value="result" name="mz" inline></checkbox>
+<radio data="data" value="result" name="mz1" inline></radio>
 <br/>
 <h4>横向排列换行：</h4>
-<checkbox data="data" value="result" name="mz" inline="4"></checkbox>
+<radio data="data" value="result" name="mz2" inline="4"></radio>
 {{result}}
 <script>
     require(["app"],function(app){
-        var app = new app("ui");
-        app.controller("controller",function($scope){
+        var ui = new app("ui");
+        ui.controller("controller",function($scope){
             $scope.result = null;
             $scope.data = [
                 {id: 1, text: '汉族'},
