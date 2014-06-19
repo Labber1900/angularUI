@@ -1,38 +1,42 @@
 <!DOCTYPE html>
-<html ng-app="ui">
+<html ng-app = "ui">
 <head lang = "en">
   <meta charset = "UTF-8">
   <title></title>
-    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href = "../css/bootstrap.css" rel = "stylesheet" type = "text/css">
+  <link href = "../css/form.css" rel = "stylesheet" type = "text/css">
+  <script type = "text/javascript" src = "../js/libs/require-2.1.14.min.js"></script>
+  <script type = "text/javascript" src = "../js/libs/require.main.js"></script>
 </head>
-<body ng-controller="controller">
-<form name="form" novalidate class="css-form" style="padding: 16px">
+<body ng-controller = "controller">
+<form name = "myForm" novalidate class = "css-form" style = "padding: 16px">
     <label>纳税人名称：</label>
-    <text placeholder="纳税人名称" name="name" value="NSR_MC" minlength="2" maxlength="10" required default="defaultValue"></text>
+    <text placeholder = "纳税人名称" name = "name" value = "NSR_MC" minlength = "2" maxlength = "10"></text>
+    <br/>
+    <label>密码：</label>
+    <password placeholder = "密码" name = "password" value = "password" minlength = "2" maxlength = "10" required></password>
     <br/>
     <label>纳税人邮箱：</label>
-    <email placeholder="纳税人邮箱" name="email" value="email" required></email>
+    <email placeholder = "纳税人邮箱" name = "email" value = "email" required></email>
     <br/>
     <label>实缴金额：</label>
-    <number placeholder="实缴金额" name="SJJE_JE" fractionSize="6" value="SJJE_JE"  min="0" max="1000000000000" required></number>
+    <number placeholder = "实缴金额" name = "SJJE_JE" fractionSize = "6" value = "SJJE_JE" min = "0" max = "1000000000000" required integer></number>
     <br/>
     <label>应征金额：</label>
-    <money  placeholder="应征金额" name="YZSE_JE" symbol="$" value="YZSE_JE" min="0" max="1000000000000" required></money>
+    <money placeholder = "应征金额" name = "YZSE_JE" symbol = "$" value = "YZSE_JE" min = "0" max = "1000000000000"></money>
+
+    {{myForm.$valid}}
 </form>
 <script>
-    function controller($scope){
-         $scope.email = "";
-         $scope.NSR_MC = "";
-         $scope.SJJE_JE = null;
-         $scope.YZSE_JE = null;
-        $scope.defaultValue = "sdfsdfsdf";
-         $scope.submit = function(){
-
-        }
-    }
+    require(["directive"],function(module){
+        module.controller("controller",function($scope){
+            $scope.email = "hu-bo@neusoft.com";
+            $scope.password = "";
+            $scope.NSR_MC = "";
+            $scope.SJJE_JE = null;
+            $scope.YZSE_JE = null;
+        });
+    });
 </script>
-<script type="text/javascript" src="../js/libs/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="../js/libs/angular.min.js"></script>
-<script type="text/javascript" src="../js/directive.js"></script>
 </body>
 </html>

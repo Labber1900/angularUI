@@ -5,6 +5,8 @@
   <title></title>
     <link href = "../css/bootstrap.min.css" rel = "stylesheet" type = "text/css">
     <link href = "../css/group.css" rel = "stylesheet" type = "text/css">
+  <script type = "text/javascript" src = "../js/libs/require-2.1.14.min.js"></script>
+  <script type = "text/javascript" src = "../js/libs/require.main.js"></script>
 </head>
 <body>
 
@@ -16,8 +18,8 @@
     </VGroup>
     <div style = "height: 500px;width:200px;border:1px solid;margin:4px 0 4px 0">Space D</div>
 </HGroup>
-<script type = "text/javascript" src = "../js/libs/angular.min.js"></script>
-<script type = "text/javascript" src = "../js/directive.js"></script>
-<script type = "text/javascript" src = "../js/libs/jquery-2.1.1.min.js"></script>
+<script>
+    require(["directive"]);
+</script>
 </body>
 </html>

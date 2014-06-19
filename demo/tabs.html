@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+  <script type = "text/javascript" src = "../js/libs/require-2.1.14.min.js"></script>
+  <script type = "text/javascript" src = "../js/libs/require.main.js"></script>
 </head>
 <body>
 <tabs>
@@ -21,8 +23,8 @@
         count: {{count}}
     </pane>
 </tabs>
-<script type="text/javascript" src="../js/libs/angular.min.js"></script>
-<script type="text/javascript" src="../js/directive.js"></script>
-<script type="text/javascript" src="../js/libs/bootstrap.min.js"></script>
+<script>
+    require(["directive"]);
+</script>
 </body>
 </html>

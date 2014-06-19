@@ -1,7 +1,7 @@
-<div>
-    <input type = "email" class = "form-control"  placeholder = "{{placeholder}}" ng-model = "value" ng-required="required">
-    <div ng-show="field.$dirty && field.$invalid">
-      <span ng-show="field.$error.required" class="text-danger">Tell us your email.</span>
-      <span ng-show="field.$error.email" class="text-danger">This is not a valid email.</span>
+<div class="form-item" ng-class="{'has-success':field.$dirty && !field.$invalid,'has-error':field.$invalid}">
+    <input type = "text" class = "form-control" ng-class="{required:required}"  placeholder = "{{placeholder}}" ng-model = "value" ng-required="required" isemail>
+    <div ng-show="field.$invalid">
+      <span ng-show="field.$error.email" class="text-danger msg">This is not a valid email.</span>
+      <span ng-show="field.$error.required && !field.$error.email" class="text-danger msg">is null.</span>
     </div>
 </div>
