@@ -12,6 +12,7 @@ require.config({
     },
     shim: {
         'angular': {'exports': 'angular'},
+        'Handlebars': {'exports': 'Handlebars'},
         'jQuery': {'exports': 'jQuery'}
     }
 });

@@ -19,23 +19,26 @@
     <label>纳税人邮箱：</label>
     <email placeholder = "纳税人邮箱" name = "email" value = "email" required></email>
     <br/>
-    <label>实缴金额：</label>
-    <number placeholder = "实缴金额" name = "SJJE_JE" fractionSize = "6" value = "SJJE_JE" min = "0" max = "1000000000000" required integer></number>
+    <label>年龄：</label>
+    <number placeholder = "年龄" name = "NL" fractionSize = "6" value = "NL" min = "0" max = "1000000000000" required integer></number>
     <br/>
     <label>应征金额：</label>
     <money placeholder = "应征金额" name = "YZSE_JE" symbol = "$" value = "YZSE_JE" min = "0" max = "1000000000000"></money>
-
-    {{myForm.$valid}}
+    <br/>
+    <button class="btn btn-primary" ng-click="onClick()" formButton>这是一个按钮</button>
 </form>
 <script>
     require(["app"],function(app){
         var ui = new app("ui");
-        ui.controller("controller",function($scope){
+        ui.controller("controller",function($scope,$window){
             $scope.email = "hu-bo@neusoft.com";
             $scope.password = "";
             $scope.NSR_MC = "";
-            $scope.SJJE_JE = null;
+            $scope.NL = null;
             $scope.YZSE_JE = null;
+            $scope.onClick = function(){
+                $window.alert($scope.email);
+            }
         });
     });
 </script>

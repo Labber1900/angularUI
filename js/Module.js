@@ -795,6 +795,23 @@ define(["jQuery", "angular", "Handlebars", "prototype"], function ($, angular, H
                     templateUrl: "../templates/template-radio.html"
                 }
             })
+            .directive("formbutton",function(){
+                return {
+                    restrict: "A",
+                    require : "^form",
+                    link : function($scope,element,attrs,formCtrl){
+                        $scope.$watch(function(){
+                            return formCtrl.$invalid;
+                        },function(value){
+                            if(value){
+                                $(element).attr("disabled","disabled");
+                            }else{
+                                $(element).removeAttr("disabled");
+                            }
+                        });
+                    }
+                };
+            })
             /*
              * container
              */
