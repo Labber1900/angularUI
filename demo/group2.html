@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app = "ui">
+<html>
 <head lang = "en">
   <meta charset = "UTF-8">
   <title></title>
@@ -19,9 +19,12 @@
     <div style = "height: 500px;width:200px;border:1px solid;margin:4px 0 4px 0">Space D</div>
 </HGroup>
 <script>
-    require(["app"],function(app){
-        new app("ui");
-    });
+       require(["jquery","app"],function($,app){
+           var ui = new app("ui");
+           $(document.body).ready(function(){
+               angular.bootstrap(document, ['ui']);
+           });
+       });
 </script>
 </body>
 </html>

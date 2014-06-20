@@ -1,9 +1,9 @@
 /**
  * Created by obladi on 14-6-5.
  */
-define(["jquery", "angular", "Handlebars", "prototype"], function ($, angular, Handlebars) {
-    return function (moduleName) {
-        return angular.module(moduleName, [])
+define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
+    return function (name){
+        return  angular.module(name, [])
             .factory("Handlebars", function () {
                 return Handlebars;
             })
@@ -908,8 +908,6 @@ define(["jquery", "angular", "Handlebars", "prototype"], function ($, angular, H
                         });
                     }
                 };
-            })
-            ;
+            });
     };
-
 });

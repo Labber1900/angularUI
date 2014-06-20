@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app = "ui">
+<html>
 <head lang = "en">
     <meta charset = "UTF-8">
     <title></title>
@@ -14,10 +14,13 @@
     <date ng-model = "date" format = "yyyy年MM月dd日"></date>
 </div>
 <script>
-    require(["app"], function (app) {
+    require(["jquery","app"], function ($,app) {
         var ui = new app("ui");
         ui.controller("controller", function ($scope) {
             $scope.date = new Date(2014, 5, 1);
+        });
+        $(document.body).ready(function(){
+            angular.bootstrap(document, ['ui']);
         });
     });
 </script>

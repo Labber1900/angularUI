@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app = "ui">
+<html>
 <head lang = "en">
     <meta charset = "UTF-8">
     <title></title>
@@ -10,7 +10,7 @@
 </head>
 <body>
 <div style = "margin: 16px;" ng-controller = "controller">
-    <tree data = "treeData" check = "onCheck" click = "onClick" value = "value" load = "load"></tree>
+    <tree checkboxtree lazytree data = "treeData" check = "onCheck" click = "onClick" value = "value" load = "load"></tree>
 
     <div>
         {{value}}
@@ -21,12 +21,15 @@
     </div>
 </div>
 <script>
-    require(["app"],function(app){
+    require(["jquery","app"],function($,app){
         var ui = new app("ui");
         ui.controller("controller",function($scope){
             $scope.value = null;
             $scope.message = "nothing...";
             $scope.load = function(parent){
+                $.ajax({
+
+                });
                 var result = [],guid = function () {
                     function S4() {
                         return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
@@ -141,6 +144,9 @@
                     }
                 ]
             };
+        });
+        $(document.body).ready(function(){
+            angular.bootstrap(document, ['ui']);
         });
     });
 </script>

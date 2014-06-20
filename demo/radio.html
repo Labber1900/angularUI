@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app = "ui">
+<html>
 <head lang = "en">
   <meta charset = "UTF-8">
   <title></title>
@@ -18,19 +18,21 @@
 <radio data="data" value="result" name="mz2" inline="4"></radio>
 {{result}}
 <script>
-    require(["app"],function(app){
-        var ui = new app("ui");
-        ui.controller("controller",function($scope){
-            $scope.result = null;
-            $scope.data = [
-                {id: 1, text: '汉族'},
-                {id: 2, text: '蒙族'},
-                {id: 3, text: '满族'},
-                {id: 4, text: '朝鲜族'},
-                {id: 5, text: '维吾尔族'},
-                {id: 6, text: '壮族'},
-                {id: 7, text: '苗族'}
-            ];
+    require(["jquery","app"],function($,app){
+        $(document.body).ready(function(){
+            (new app("ui")).controller("controller",function($scope){
+                $scope.result = null;
+                $scope.data = [
+                    {id: 1, text: '汉族'},
+                    {id: 2, text: '蒙族'},
+                    {id: 3, text: '满族'},
+                    {id: 4, text: '朝鲜族'},
+                    {id: 5, text: '维吾尔族'},
+                    {id: 6, text: '壮族'},
+                    {id: 7, text: '苗族'}
+                ];
+            });
+            angular.bootstrap(document, ['ui']);
         });
     });
 </script>

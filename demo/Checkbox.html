@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html ng-app = "ui">
+<html>
 <head lang = "en">
   <meta charset = "UTF-8">
   <title></title>
     <link href = "../css/bootstrap.css" rel = "stylesheet" type = "text/css">
   <script type = "text/javascript" src = "../js/libs/require-2.1.14.min.js"></script>
-  <script type = "text/javascript" src = "../js/libs/require.main.js"></script>
+  <script type = "text/javascript"  src = "../js/libs/require.main.js"></script>
 </head>
 <body ng-controller = "controller" style="padding: 16px;">
 <h4>纵向排列：</h4>
@@ -18,19 +18,21 @@
 <checkbox data="data" value="result" name="mz" inline="4"></checkbox>
 {{result}}
 <script>
-    require(["app"],function(app){
-        var app = new app("ui");
-        app.controller("controller",function($scope){
-            $scope.result = null;
-            $scope.data = [
-                {id: 1, text: '汉族'},
-                {id: 2, text: '蒙族'},
-                {id: 3, text: '满族'},
-                {id: 4, text: '朝鲜族'},
-                {id: 5, text: '维吾尔族'},
-                {id: 6, text: '壮族'},
-                {id: 7, text: '苗族'}
-            ];
+    require(["jquery","app"],function($,app){
+        $(document.body).ready(function(){
+            (new app("ui")).controller("controller",function($scope){
+                $scope.result = null;
+                $scope.data = [
+                    {id: 1, text: '汉族'},
+                    {id: 2, text: '蒙族'},
+                    {id: 3, text: '满族'},
+                    {id: 4, text: '朝鲜族'},
+                    {id: 5, text: '维吾尔族'},
+                    {id: 6, text: '壮族'},
+                    {id: 7, text: '苗族'}
+                ];
+            });
+            angular.bootstrap(document, ['ui']);
         });
     });
 </script>

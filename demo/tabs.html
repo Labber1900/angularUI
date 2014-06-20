@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="ui">
+<html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
@@ -24,8 +24,11 @@
     </pane>
 </tabs>
 <script>
-    require(["app"],function(app){
+    require(["jquery","app"],function($,app){
         new app("ui");
+        $(document.body).ready(function(){
+            angular.bootstrap(document, ['ui']);
+        });
     });
 </script>
 </body>
