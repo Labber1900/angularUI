@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a9ff20d-8923-413b-b9e5-3481e51318d0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Module.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/demo/Checkbox.html" afterPath="$PROJECT_DIR$/demo/checkbox.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/js/prototype.js" afterPath="$PROJECT_DIR$/js/libs/prototype.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/calendar.html" afterPath="$PROJECT_DIR$/demo/calendar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/date.html" afterPath="$PROJECT_DIR$/demo/date.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/form.html" afterPath="$PROJECT_DIR$/demo/form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/gridLayout.html" afterPath="$PROJECT_DIR$/demo/gridLayout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/group.html" afterPath="$PROJECT_DIR$/demo/group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/group2.html" afterPath="$PROJECT_DIR$/demo/group2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/radio.html" afterPath="$PROJECT_DIR$/demo/radio.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/libs/require-2.1.14.min.js" afterPath="$PROJECT_DIR$/js/libs/require-2.1.14.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/libs/require.main.js" afterPath="$PROJECT_DIR$/js/libs/require.main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/tabs.html" afterPath="$PROJECT_DIR$/demo/tabs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/tree.html" afterPath="$PROJECT_DIR$/demo/tree.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="5a9ff20d-8923-413b-b9e5-3481e51318d0" name="Default" comment="" />
     <ignored path="angularUI.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
