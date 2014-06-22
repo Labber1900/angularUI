@@ -86,8 +86,7 @@ define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
                         if (attrs.name)
                             inputObj.attr("name", attrs.name);
                         else
-                            console.error("text必须制定name！");
-
+                            console.error("必须制定name！");
                         return inputObj;
                     }
                 });
@@ -372,6 +371,16 @@ define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
                     email: {
                         regexp: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
                     },
+                    date : {
+                        defaultFormat:"yyyy-MM-dd",
+                        editorFormat : "yyyyMMdd",
+                        regexps:{
+                            8 : /^(\d{4})(\d{2})(\d{2})$/,
+                            7 : [/^(\d{4})(\d{2})(\d{1})$/,/^(\d{4})(\d{1})(\d{2})$/],
+                            6 : /^(\d{4})(\d{1})(\d{1})$/
+                        },
+                        replace : "$1/$2/$3"
+                    },
                     get: function (key) {
                         var keys = key.split("."), data = this;
                         while (keys.length) {
@@ -638,19 +647,97 @@ define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
          * @example
          * <date ng-model="date" format="yyyy年MM月dd日"></date>
          */
-            .directive("date", function () {
+            .factory("dateUtil",["constant",function(constant){
                 return {
-                    require: '?calendar',
+                    parseDate : function(value){
+                        var regexps = constant.get("date.regexps"),result = null;
+                        if(value.length<9 && value.length>5){
+                            switch (value.length){
+                                case 6 :{
+                                    if(regexps[6].test(value)){
+                                        result = new Date(value.replace(regexps[6],constant.get("date.replace")));
+                                        break;
+                                    }
+                                };break;
+                                case 7 :{
+                                    var array = regexps[7],length = array.length;
+                                    for(var i=0;i<length;i++){
+                                        if(array[i].test(value) ){
+                                            result = new Date(value.replace(array[i],constant.get("date.replace")));
+                                            break;
+                                        }
+                                    }
+                                };break;
+                                case 8:{
+                                    if(regexps[8].test(value)){
+                                        result = new Date(value.replace(regexps[8],constant.get("date.replace")));
+                                        break;
+                                    }
+                                };break;
+                            }
+                        }
+                        if(!angular.isDate(result)){
+                            result = null;
+                        }
+                        return result;
+                    }
+                };
+            }])
+            .directive("date", ["$filter","constant","dateUtil",function ($filter,constant,DateUtil) {
+                return {
+                    require: ["^form","?calendar"],
                     restrict: 'E',
                     scope: {
-                        value: '=ngModel'
+                        value: '='
                     },
-                    link: function ($scope, element, attrs) {
-                        $scope.format = attrs.format ? attrs.format : 'yyyy-MM-dd';
+                    compile:function(element,attrs){
+                        var inputObj = $(element).find("input");
+                        if (attrs.name)
+                            inputObj.attr("name", attrs.name);
+                        else
+                            console.error("必须制定name！");
+                        return function($scope,element,attrs,ctrls){
+                            $scope.format = attrs.format ? attrs.format : constant.get("date.defaultFormat");
+                            $scope.field = ctrls[0][attrs.name];
+                            $scope.required = attrs.hasOwnProperty("required");
+                            $scope.$watch("value",function(value){
+                                $scope.displayValue = $filter("date")(value, $scope.format);
+                            });
+                            $(element).find("input").click(function(event){
+                                event.stopPropagation();
+                            }).focus(function(){
+                                $scope.$apply(function(){
+                                    $scope.displayValue = $filter("date")($scope.value, constant.get("date.editorFormat"));
+                                });
+                            }).blur(function(){
+                                var _value = this.value;
+                                $scope.$apply(function(){
+                                   $scope.value =DateUtil.parseDate(_value);
+                                });
+                            });
+
+                        };
                     },
                     templateUrl: '../templates/template-date.html'
                 };
-            })
+            }])
+            .directive("isdate",["dateUtil",function(DateUtil){
+                return {
+                    require:"^ngModel",
+                    restrict: 'A',
+                    link: function ($scope, element, attrs, ctrl) {
+                        ctrl.$parsers.unshift(function (viewValue) {
+                            if(DateUtil.parseDate(viewValue)){
+                                ctrl.$setValidity('date', true);
+                                return viewValue;
+                            }else{
+                                ctrl.$setValidity('date', false);
+                                return viewValue;
+                            }
+                        });
+                    }
+                };
+            }])
             .directive("tree", ["Handlebars", "$cacheFactory", "treeEventHandler", function (Handlebars, $cacheFactory, TreeEventHandler) {
                 return {
                     restrict: 'E',

@@ -1,9 +1,14 @@
-<div class="input-group dropdown" tabindex="-1" style="outline: none;">
-    <div>
-        <div class="form-control" style="cursor: pointer;">{{value|date:format}}</div>
+<div class="dropdown form-item" tabindex="-1" style="outline: none;" ng-class="{'has-success':field.$dirty && !field.$invalid,'has-error':field.$invalid}">
+    <div class="input-group">
+        <input type="text" class="form-control" ng-model="displayValue"  ng-class="{required:required}" ng-required="required" isDate/>
         <div class="input-group-btn">
+            <button class="btn btn-default" type="button" style="border-right: 0" ng-show="value" ng-click="value = null"><span class="glyphicon glyphicon-remove"></span> </button>
             <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
         </div>
+    </div>
+    <div ng-show="field.$invalid">
+      <span ng-show="field.$error.date" class="text-danger msg">error date.</span>
+      <span ng-show="field.$error.required && !field.$error.date" class="text-danger msg">can't be null.</span>
     </div>
     <div class="dropdown-menu">
         <calendar ng-model="value"></calendar>
