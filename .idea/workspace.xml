@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a9ff20d-8923-413b-b9e5-3481e51318d0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/combobox.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/dropdown.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/float.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/list.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/template-combobox.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/template-list.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/date.css" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/date.html" afterPath="$PROJECT_DIR$/demo/date.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/form.css" afterPath="$PROJECT_DIR$/css/form.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/form.html" afterPath="$PROJECT_DIR$/demo/form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="5a9ff20d-8923-413b-b9e5-3481e51318d0" name="Default" comment="" />
     <ignored path="angularUI.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
