@@ -1,0 +1,12 @@
+<div class="dropdown form-item" tabindex="-1" style="outline: none;" ng-class="{'has-success':field.$dirty && !field.$invalid,'has-error':field.$invalid}">
+    <div class="input-group">
+       <div class="form-control">{{value.text}}</div><input type="hidden" ng-required="required" value="{{value.text}}" ng-class="{required:required}" ng-required="required" />
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="button"><span class="caret"></span></button>
+        </div>
+    </div>
+    <div ng-show="field.$invalid">
+      <span ng-show="field.$error.required" class="text-danger msg">can't be null.</span>
+    </div>
+    <list value="value" data="data" class="dropdown-menu" style="border: 0;margin: 4px 0 0 0;padding: 0"></list>
+</div>

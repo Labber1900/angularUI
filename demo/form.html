@@ -6,13 +6,13 @@
   <link href = "../css/bootstrap.css" rel = "stylesheet" type = "text/css">
   <link href = "../css/form.css" rel = "stylesheet" type = "text/css">
     <link href = "../css/calendar.css" rel = "stylesheet" type = "text/css">
-    <link href = "../css/date.css" rel = "stylesheet" type = "text/css">
+    <link href = "../css/dropdown.css" rel = "stylesheet" type = "text/css">
   <script type = "text/javascript" src = "../js/libs/require-2.1.14.min.js"></script>
   <script type = "text/javascript"  src = "../js/libs/require.main.js"></script>
 </head>
-<body ng-controller = "controller">
-<form name = "myForm" novalidate class = "css-form" style = "padding: 16px">
-    <label>缴款日期：</label>
+<body ng-controller = "controller" style="padding: 16px;">
+<div ng-form>
+     <label>缴款日期：</label>
     <date value= "date" name="date2" format = "yyyy年MM月dd日" required></date>
     <br/>
     <label>纳税人名称：</label>
@@ -31,7 +31,8 @@
     <money placeholder = "应征金额" name = "YZSE_JE" symbol = "RMB" value = "YZSE_JE" min = "0" max = "1000000000000"></money>
     <br/>
     <button class = "btn btn-primary" ng-click = "onClick()" formButton>这是一个按钮</button>
-</form>
+</div>
+
 <script>
     require(["jquery","app"],function($,app){
         (new app("ui")).controller("controller",function($scope) {

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang = "en">
+  <meta charset = "UTF-8">
+  <title></title>
+  <link href = "../css/bootstrap.css" rel = "stylesheet" type = "text/css">
+  <link href = "../css/dropdown.css" rel = "stylesheet" type = "text/css">
+  <script type = "text/javascript" src = "../js/libs/require-2.1.14.min.js"></script>
+  <script type = "text/javascript" src = "../js/libs/require.main.js"></script>
+</head>
+<body style="padding: 16px" ng-controller="controller">
+<form name="myForm">
+<combobox name="combobox" data="data" value = "result" required></combobox>
+    {{result}}
+</form>
+<script>
+    require(["app"],function(app){
+        (new app("ui")).controller("controller",function($scope){
+            $scope.result = null;
+            $scope.data = [
+                {id: 1, text: '汉族'},
+                {id: 2, text: '蒙族'},
+                {id: 3, text: '满族'},
+                {id: 4, text: '朝鲜族'},
+                {id: 5, text: '维吾尔族'},
+                {id: 6, text: '壮族'},
+                {id: 7, text: '苗族'}
+            ];
+        });
+
+        $(document.body).ready(function(){
+            angular.bootstrap(document, ['ui']);
+        });
+    });
+</script>
+</body>
+</html>

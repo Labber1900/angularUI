@@ -1,8 +1,8 @@
 /**
  * Created by obladi on 14-6-5.
  */
-define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
-    return function (name){
+define(["angular", "jquery", "Handlebars"], function (angular, $, Handlebars) {
+    return function (name) {
         return  angular.module(name, [])
             .factory("Handlebars", function () {
                 return Handlebars;
@@ -371,15 +371,15 @@ define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
                     email: {
                         regexp: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
                     },
-                    date : {
-                        defaultFormat:"yyyy-MM-dd",
-                        editorFormat : "yyyyMMdd",
-                        regexps:{
-                            8 : /^(\d{4})(\d{2})(\d{2})$/,
-                            7 : [/^(\d{4})(\d{2})(\d{1})$/,/^(\d{4})(\d{1})(\d{2})$/],
-                            6 : /^(\d{4})(\d{1})(\d{1})$/
+                    date: {
+                        defaultFormat: "yyyy-MM-dd",
+                        editorFormat: "yyyyMMdd",
+                        regexps: {
+                            8: /^(\d{4})(\d{2})(\d{2})$/,
+                            7: [/^(\d{4})(\d{2})(\d{1})$/, /^(\d{4})(\d{1})(\d{2})$/],
+                            6: /^(\d{4})(\d{1})(\d{1})$/
                         },
-                        replace : "$1/$2/$3"
+                        replace: "$1/$2/$3"
                     },
                     get: function (key) {
                         var keys = key.split("."), data = this;
@@ -647,72 +647,81 @@ define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
          * @example
          * <date ng-model="date" format="yyyy年MM月dd日"></date>
          */
-            .factory("dateUtil",["constant",function(constant){
+            .factory("dateUtil", ["constant", function (constant) {
                 return {
-                    parseDate : function(value){
-                        var regexps = constant.get("date.regexps"),result = null;
-                        if(value.length<9 && value.length>5){
-                            switch (value.length){
-                                case 6 :{
-                                    if(regexps[6].test(value)){
-                                        result = new Date(value.replace(regexps[6],constant.get("date.replace")));
+                    parseDate: function (value) {
+                        var regexps = constant.get("date.regexps"), result = null;
+                        if (value.length < 9 && value.length > 5) {
+                            switch (value.length) {
+                                case 6 :
+                                {
+                                    if (regexps[6].test(value)) {
+                                        result = new Date(value.replace(regexps[6], constant.get("date.replace")));
                                         break;
                                     }
-                                };break;
-                                case 7 :{
-                                    var array = regexps[7],length = array.length;
-                                    for(var i=0;i<length;i++){
-                                        if(array[i].test(value) ){
-                                            result = new Date(value.replace(array[i],constant.get("date.replace")));
+                                }
+                                    ;
+                                    break;
+                                case 7 :
+                                {
+                                    var array = regexps[7], length = array.length;
+                                    for (var i = 0; i < length; i++) {
+                                        if (array[i].test(value)) {
+                                            result = new Date(value.replace(array[i], constant.get("date.replace")));
                                             break;
                                         }
                                     }
-                                };break;
-                                case 8:{
-                                    if(regexps[8].test(value)){
-                                        result = new Date(value.replace(regexps[8],constant.get("date.replace")));
+                                }
+                                    ;
+                                    break;
+                                case 8:
+                                {
+                                    if (regexps[8].test(value)) {
+                                        result = new Date(value.replace(regexps[8], constant.get("date.replace")));
                                         break;
                                     }
-                                };break;
+                                }
+                                    ;
+                                    break;
                             }
                         }
-                        if(!angular.isDate(result)){
+                        if (!angular.isDate(result)) {
                             result = null;
                         }
                         return result;
                     }
                 };
             }])
-            .directive("date", ["$filter","constant","dateUtil",function ($filter,constant,DateUtil) {
+            .directive("date", ["$filter", "constant", "dateUtil", function ($filter, constant, DateUtil) {
                 return {
-                    require: ["^form","?calendar"],
+                    require: ["^form", "?calendar"],
                     restrict: 'E',
                     scope: {
                         value: '='
                     },
-                    compile:function(element,attrs){
+                    compile: function (element, attrs) {
                         var inputObj = $(element).find("input");
                         if (attrs.name)
                             inputObj.attr("name", attrs.name);
                         else
                             console.error("必须制定name！");
-                        return function($scope,element,attrs,ctrls){
+                        return function ($scope, element, attrs, ctrls) {
                             $scope.format = attrs.format ? attrs.format : constant.get("date.defaultFormat");
                             $scope.field = ctrls[0][attrs.name];
                             $scope.required = attrs.hasOwnProperty("required");
-                            $scope.$watch("value",function(value){
+                            $scope.$watch("value", function (value) {
                                 $scope.displayValue = $filter("date")(value, $scope.format);
                             });
-                            $(element).find("input").click(function(event){
+                            $(element).find("input").click(function (event) {
                                 event.stopPropagation();
-                            }).focus(function(){
-                                $scope.$apply(function(){
+                            }).focus(function () {
+                                $scope.$apply(function () {
                                     $scope.displayValue = $filter("date")($scope.value, constant.get("date.editorFormat"));
                                 });
-                            }).blur(function(){
+                            }).blur(function () {
                                 var _value = this.value;
-                                $scope.$apply(function(){
-                                   $scope.value =DateUtil.parseDate(_value);
+                                $scope.$apply(function () {
+                                    $scope.value = DateUtil.parseDate(_value);
                                 });
                             });
 
@@ -721,16 +730,16 @@ define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
                     templateUrl: '../templates/template-date.html'
                 };
             }])
-            .directive("isdate",["dateUtil",function(DateUtil){
+            .directive("isdate", ["dateUtil", function (DateUtil) {
                 return {
-                    require:"^ngModel",
+                    require: "^ngModel",
                     restrict: 'A',
                     link: function ($scope, element, attrs, ctrl) {
                         ctrl.$parsers.unshift(function (viewValue) {
-                            if(DateUtil.parseDate(viewValue)){
+                            if (DateUtil.parseDate(viewValue)) {
                                 ctrl.$setValidity('date', true);
                                 return viewValue;
-                            }else{
+                            } else {
                                 ctrl.$setValidity('date', false);
                                 return viewValue;
                             }
@@ -882,18 +891,69 @@ define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
                     templateUrl: "../templates/template-radio.html"
                 }
             })
-            .directive("formbutton",function(){
+            .directive("combobox",function(){
+                return {
+                    restrict : "E",
+                    replace : "true",
+                    require : ["^form","?list"],
+                    scope : {
+                        data : "=",
+                        value : "="
+                    },
+                    compile: function(element,attrs){
+                        var inputObj = $(element).find("input");
+                        if (attrs.name)
+                            inputObj.attr("name", attrs.name);
+                        else
+                            console.error("必须制定name！");
+                        return function($scope,element,attrs,ctrl){
+                            $scope.field = ctrl[0][attrs.name];
+                            $scope.required = attrs.hasOwnProperty("required") ? true : false;
+                        };
+                    },
+                    templateUrl : "../templates/template-combobox.html"
+                };
+            })
+            .directive("formbutton", function () {
                 return {
                     restrict: "A",
-                    require : "^form",
-                    link : function($scope,element,attrs,formCtrl){
-                        $scope.$watch(function(){
+                    require: "^form",
+                    link: function ($scope, element, attrs, formCtrl) {
+                        $scope.$watch(function () {
                             return formCtrl.$invalid;
-                        },function(value){
-                            if(value){
-                                $(element).attr("disabled","disabled");
-                            }else{
+                        }, function (value) {
+                            if (value) {
+                                $(element).attr("disabled", "disabled");
+                            } else {
                                 $(element).removeAttr("disabled");
+                            }
+                        });
+                    }
+                };
+            })
+            .directive("smartfloat", function () {
+                return {
+                    restrict: "A",
+                    link: function ($scope, element) {
+                        var top = $(element).position().top, pos = $(element).css("position");
+                        $(window).scroll(function () {
+                            var scrolls = $(this).scrollTop();
+                            if (scrolls > top) {
+                                if (window.XMLHttpRequest) {
+                                    $(element).css({
+                                        position: "fixed",
+                                        top: 0
+                                    });
+                                } else {
+                                    $(element).css({
+                                        top: scrolls
+                                    });
+                                }
+                            } else {
+                                $(element).css({
+                                    position: pos,
+                                    top: top
+                                });
                             }
                         });
                     }
@@ -944,6 +1004,22 @@ define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
                     templateUrl: "../templates/template-hgroup.html"
                 };
             })
+            .directive("list", function () {
+                return {
+                    restrict: "E",
+                    replace: true,
+                    scope: {
+                        data: "=",
+                        value: "="
+                    },
+                    link: function ($scope) {
+                        $scope.clickHandler = function (item) {
+                            $scope.value = item;
+                        };
+                    },
+                    templateUrl: "../templates/template-list.html"
+                };
+            })
             .directive("gridlayout", function ($compile) {
                 return {
                     restrict: "E",
@@ -979,16 +1055,16 @@ define(["angular","jquery","Handlebars"],function(angular,$,Handlebars){
                     restrict: 'C',
                     link: function (scope, element) {
                         var timer;
-                        element.click(function () {
+                        $(element).click(function () {
                             var $this = $(this);
-                            if (!$this.hasClass("open")) {
-                                $this.addClass("open").focus();
+                            if (!$this.hasClass("opened")) {
+                                $this.addClass("opened").focus();
                             }
                         }).focusout(function () {
                             var _this = this;
                             timer = $window.setTimeout(function () {
                                 var $this = $(this);
-                                $this.removeClass("open");
+                                $this.removeClass("opened");
                             }.bind(_this), 100);
                         }).focusin(function () {
                             $window.clearTimeout(timer);

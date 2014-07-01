@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang = "en">
+  <meta charset = "UTF-8">
+  <title></title>
+  <script type = "text/javascript" src = "../js/libs/require-2.1.14.min.js"></script>
+  <script type = "text/javascript" src = "../js/libs/require.main.js"></script>
+</head>
+<body>
+<style type = "text/css">
+
+.float {
+    border: 1px solid #ffecb0;
+    background-color: #fffee0;
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+}
+</style>
+<div style = "width: 100px;height: 100px;border:1px solid red" class = "float" id = "float" smartfloat><div style="border: 1px solid red;width: 10px;height: 10px"></div></div>
+
+<div style = "width: 100%;height: 10000px;border: 1px solid"></div>
+<script>
+
+    require(["app"],function(app){
+        (new app("ui"));
+
+        $(document.body).ready(function(){
+            angular.bootstrap(document, ['ui']);
+        });
+    });
+</script>
+</body>
+</html>

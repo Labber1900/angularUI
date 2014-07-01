@@ -1,8 +1,8 @@
-form .form-item .msg {
+ .form-item .msg {
     padding-left: 13px;
     display: block
 }
 
-form .form-item input.required {
+.form-item input.required {
     background-color: #FAFFBD;
 }
