@@ -1,0 +1,18 @@
+<div class = "dataGrid" style="width:100%;height:100%;border: 1px solid;">
+  <div style="display: none" ng-transclude></div>
+  <table width="100%" height="100%" border="1" style="">
+      <thead>
+           <tr ng-repeat="header in headers">
+               <th bindonce ng-repeat = "th in header" bo-bind="th.text" bo-attr bo-attr-colspan="th.colspan" bo-attr-rowspan="th.rowspan" bo-attr-align="th.align">
+
+                   <span bindonce="th" bo-bind="th.text"></span>
+               </th>
+           </tr>
+      </thead>
+       <tbody>
+           <tr ng-repeat="row in datas" ng-transclude>
+
+           </tr>
+       </tbody>
+   </table>
+</div>

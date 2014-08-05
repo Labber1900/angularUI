@@ -22,8 +22,7 @@
 </div>
 <script>
     require(["jquery","app"],function($,app){
-        var ui = new app("ui");
-        ui.controller("controller",function($scope){
+        angular.module("ui",["com.uniparticle"]).controller("controller",function($scope){
             $scope.value = null;
             $scope.message = "nothing...";
             $scope.load = function(parent){

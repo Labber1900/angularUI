@@ -18,7 +18,7 @@
 <checkbox data="data" value="result" name="mz" inline="4"></checkbox>
 {{result}}
 <script>
-    require(["jquery","app"],function($,app){
+    require(["jquery","app","prototype"],function($,app){
         $(document.body).ready(function(){
             (new app("ui")).controller("controller",function($scope){
                 $scope.result = null;

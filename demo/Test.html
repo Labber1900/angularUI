@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="com.uniparticle">
+<head lang = "en">
+  <meta charset = "UTF-8">
+  <title></title>
+   <script type = "text/javascript" src = "../js/libs/angular.min.js"></script>
+    <script type="text/javascript" src="../js/libs/bindonce.js"></script>
+   <script type = "text/javascript" src = "../js/libs/jquery-2.1.1.min.js"></script>
+</head>
+<body ng-controller = "controller">
+<table border = "1">
+    <thead>
+        <tr ng-repeat = "header in headers">
+            <th bindonce ng-repeat = "th in header" bo-bind="th.text" bo-attr bo-attr-colspan="th.colspan" bo-attr-rowspan="th.rowspan" bo-attr-align="th.align"></th>
+        </tr>
+    </thead>
+</table>
+<script>
+
+    function controller($scope) {
+        $scope.headers = [
+            [
+                {"text": "名称", "colspan": 1, "rowspan": 3},
+                {"text": "性别", "colspan": 1, "rowspan": 3},
+                {"text": "年龄", "colspan": 1, "rowspan": 3},
+                {"text": "家庭情况", "colspan": 5, "rowspan": 1},
+                {"text": "工作情况", "colspan": 3, "rowspan": 1},
+                {"text": "月薪", "colspan": 1, "rowspan": 3},
+                {"text": "学历", "colspan": 1, "rowspan": 3}
+            ],
+            [
+                {"text": "家庭成员", "colspan": 3, "rowspan": 1},
+                {"text": "家庭地址", "colspan": 1, "rowspan": 2},
+                {"text": "电话", "colspan": 1, "rowspan": 2},
+                {"text": "单位名称", "colspan": 1, "rowspan": 2},
+                {"text": "单位地址", "colspan": 1, "rowspan": 2},
+                {"text": "单位电话", "colspan": 1, "rowspan": 2}
+            ],
+            [
+                {"text": "父亲", "colspan": 1, "rowspan": 1},
+                {"text": "母亲", "colspan": 1, "rowspan": 1},
+                {"text": "配偶", "colspan": 1, "rowspan": 1}
+            ]
+        ];
+    }
+
+</script>
+</body>
+</html>

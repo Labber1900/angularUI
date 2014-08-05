@@ -15,7 +15,7 @@
 </form>
 <script>
     require(["app"],function(app){
-        (new app("ui")).controller("controller",function($scope){
+        angular.module("ui",["com.uniparticle"]).controller("controller",function($scope){
             $scope.result = null;
             $scope.data = [
                 {id: 1, text: '汉族'},

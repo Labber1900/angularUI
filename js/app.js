@@ -1,9 +1,8 @@
 /**
  * Created by obladi on 14-6-5.
  */
-define(["angular", "jquery", "Handlebars"], function (angular, $, Handlebars) {
-    return function (name) {
-        return  angular.module(name, [])
+define(["angular", "jquery", "Handlebars","bindonce"], function (angular, $, Handlebars) {
+        angular.module("com.uniparticle",['pasvaz.bindonce'])
             .factory("Handlebars", function () {
                 return Handlebars;
             })
@@ -1047,6 +1046,74 @@ define(["angular", "jquery", "Handlebars"], function (angular, $, Handlebars) {
                     }
                 };
             })
+            .directive("datagrid",function(){
+                return {
+                    restrict : 'E',
+                    transclude: true,
+                    replace:true,
+                    controller : function(){
+                        var headerIndex = [];
+                        this.headers = [];
+                        this.columns = [];
+                        this.colspan = {};
+                        this.rowspan = {};
+                        this.max = 0;
+                        this.addCell = function(cell){
+                           this.columns.push(cell);
+                            var title = cell.title,titles = title.split("."),length = titles.length,header = null ,level = 0;
+                            this.max = length>this.max?length:this.max;
+                            //init header,parse title,解析上下级关系
+                            while (titles.length) {
+                                header = titles.shift();
+                                this.colspan[header] = this.colspan.hasOwnProperty(header)?this.colspan[header] + 1 : 1;
+                                this.rowspan[header] = level + 1<length? 1 : -level;
+                                if(this.headers[level] == null){
+                                    this.headers[level] = [];
+                                }
+                                var th = this.headers[level];
+                                if(!headerIndex[header]){
+                                    th.push({
+                                        text : header
+
+                                    });
+                                    headerIndex[header] = th[th.length - 1];
+                                }
+                                level ++;
+                            }
+                        };
+
+                    },
+                   link : function($scope,element,attrs,ctrl){
+                       for(var i=0;i<ctrl.headers.length;i++){
+                       var th = ctrl.headers[i];
+                       for(var j=0;j<th.length;j++){
+                           var header = th[j];
+                           header.colspan = ctrl.colspan[header.text];
+                           header.rowspan = ctrl.rowspan[header.text]>0?ctrl.rowspan[header.text]:ctrl.max + ctrl.rowspan[header.text] ;
+                       }
+                      }
+                      $scope.headers = ctrl.headers;
+                    },
+                    templateUrl : "../templates/template-datagrid.html"
+                };
+            })
+            .directive("cell",function(){
+                return {
+                    require: '^datagrid',
+                    restrict : 'E',
+                    replace:true,
+                    transclude: true,
+                    link:function($scope,element,attrs,ctrl){
+                        ctrl.addCell({
+                            field : attrs.field,
+                            title : attrs.title,
+                            fixed : attrs.hasOwnProperty("fixed"),
+                            align : attrs.align?attrs.align:"center"
+                        });
+                    },
+                    templateUrl: '../templates/template-cell.html'
+                };
+            })
             /*
              * class directive
              */
@@ -1072,5 +1139,4 @@ define(["angular", "jquery", "Handlebars"], function (angular, $, Handlebars) {
                     }
                 };
             });
-    };
 });

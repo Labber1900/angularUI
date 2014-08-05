@@ -21,8 +21,7 @@
 <script>
     require(["jquery","app"],function($,app){
         $(document.body).ready(function(){
-            var ui = new app("ui");
-            ui.controller("controller",function($scope){
+            angular.module("ui",["com.uniparticle"]).controller("controller",function($scope){
                 $scope.date = new Date(2013,10,1);
             });
             angular.bootstrap(document, ['ui']);

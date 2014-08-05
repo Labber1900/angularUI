@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang = "en">
+  <meta charset = "UTF-8">
+  <title></title>
+  <script type = "text/javascript" src = "../js/libs/linq.min.js"></script>
+  <script type = "text/javascript" src = "../js/libs/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<table border="1" cellpadding="0" cellspacing="0">
+    <thead>
+       <tr>
+           <td>&nbsp;</td>
+           <th colspan="2">在职</th>
+           <th colspan="2">退休</th>
+           <th colspan="2">离休</th>
+       </tr>
+       <tr>
+           <td></td>
+           <th>男</th>
+           <th>女</th>
+           <th>男</th>
+           <th>女</th>
+           <th>男</th>
+           <th>女</th>
+       </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+<script>
+
+      var data = [
+          {count: 110, level: '在职', sex: '男', dept: '沈阳市地税局' },
+          {count: 40, level: '在职', sex: '女', dept: '沈阳市地税局' },
+          {count: 10, level: '退休', sex: '男', dept: '沈阳市地税局' },
+          {count: 14, level: '退休', sex: '女', dept: '沈阳市地税局' },
+          {count: 12, level: '离休', sex: '男', dept: '沈阳市地税局' },
+          {count: 2, level: '离休', sex: '女', dept: '沈阳市地税局' },
+
+
+          {count: 90, level: '在职', sex: '男', dept: '长春市地税局' },
+          {count: 50, level: '在职', sex: '女', dept: '长春市地税局' },
+          {count: 20, level: '退休', sex: '男', dept: '长春市地税局' },
+          {count: 13, level: '退休', sex: '女', dept: '长春市地税局' },
+          {count: 10, level: '离休', sex: '男', dept: '长春市地税局' },
+          {count: 1, level: '离休', sex: '女', dept: '长春市地税局' },
+
+
+          {count: 70, level: '在职', sex: '男', dept: '哈尔滨市地税局' },
+          {count: 14, level: '在职', sex: '女', dept: '哈尔滨市地税局' },
+          {count: 23, level: '退休', sex: '男', dept: '哈尔滨市地税局' },
+          {count: 6, level: '退休', sex: '女', dept: '哈尔滨市地税局' },
+          {count: 13, level: '离休', sex: '男', dept: '哈尔滨市地税局' },
+          {count: 15, level: '离休', sex: '女', dept: '哈尔滨市地税局' },
+
+
+          {count: 140, level: '在职', sex: '男', dept: '西安市地税局' },
+          {count: 46, level: '在职', sex: '女', dept: '西安市地税局' },
+          {count: 27, level: '退休', sex: '男', dept: '西安市地税局' },
+          {count: 13, level: '退休', sex: '女', dept: '西安市地税局' },
+          {count: 11, level: '离休', sex: '男', dept: '西安市地税局' },
+          {count: 9, level: '离休', sex: '女', dept: '西安市地税局' },
+
+
+          {count: 130, level: '在职', sex: '男', dept: '武汉市地税局' },
+          {count: 34, level: '在职', sex: '女', dept: '武汉市地税局' },
+          {count: 21, level: '退休', sex: '男', dept: '武汉市地税局' },
+          {count: 43, level: '退休', sex: '女', dept: '武汉市地税局' },
+          {count: 20, level: '离休', sex: '男', dept: '武汉市地税局' },
+          {count: 24, level: '离休', sex: '女', dept: '武汉市地税局' },
+
+
+          {count: 150, level: '在职', sex: '男', dept: '呼和浩特市地税局' },
+          {count: 80, level: '在职', sex: '女', dept: '呼和浩特市地税局' },
+          {count: 10, level: '退休', sex: '男', dept: '呼和浩特市地税局' },
+          {count: 4, level: '退休', sex: '女', dept: '呼和浩特市地税局' },
+          {count: 10, level: '离休', sex: '男', dept: '呼和浩特市地税局' },
+          {count: 4, level: '离休', sex: '女', dept: '呼和浩特市地税局' }
+
+      ];
+    //找到行
+      var dimension1 = ['在职','退休','离休'],dimension2 = ['男','女'],result = [],result["_index"] = {};
+      var depts =  Enumerable.From(data)
+              .Distinct("$.dept")
+              .OrderBy("$.dept")
+              .Select("$.dept").ForEach(function(item){
+                  result.push([
+                          item
+                  ]);
+                  result["_index"][item] = result;
+              });
+      for(var i=0;i<dimension1.length;i++){
+          for(var j=0;j<dimension2.length;j++){
+               var fn = function(x){
+                   return x.level == dimension1[i] && x.sex == dimension2[j];
+               };
+              Enumerable.From(data)
+                      .Where(fn)
+                      .OrderBy("$.dept")
+                      .Distinct(function(x){return x.dept})
+                      .Select(function (x) { var newObj = new Object();newObj[x.dept] = x.count ;return newObj;})
+                      .ForEach(function(item){
+                            
+                      });
+
+          }
+      }
+</script>
+</body>
+</html>

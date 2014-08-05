@@ -20,7 +20,7 @@
 </HGroup>
 <script>
        require(["jquery","app"],function($,app){
-           var ui = new app("ui");
+           angular.module("ui",["com.uniparticle"]);
            $(document.body).ready(function(){
                angular.bootstrap(document, ['ui']);
            });

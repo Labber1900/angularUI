@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang = "en">
+  <meta charset = "UTF-8">
+  <title></title>
+    <script type = "text/javascript" src = "../js/libs/jquery-1.11.1.min.js"></script>
+</head>
+<style>
+    table {
+        table-layout: fixed;
+    }
+    th{
+        height: 40px;
+    }
+    td {
+        height: 28px;
+        padding:8px;
+        /*position: relative;*/
+        background-color: #f8f4f6;
+    }
+    table th {
+        border-bottom: 1px solid #dadada;
+        border-right: 1px solid #dadada;
+    }
+    table td {
+        border-bottom: 1px solid #dadada;
+        border-right: 1px solid #dadada;
+    }
+
+    table th:last-child {
+        border-bottom: 1px solid #dadada;
+        border-right: 0;
+    }
+    table td:last-child {
+        border-bottom: 1px solid #dadada;
+        border-right: 0;
+    }
+
+    table.fixed {
+        position:absolute;
+        background-color: #ffffff;
+        border-right:2px solid black;
+    }
+
+
+</style>
+<body>
+<!--<input type="button" onclick="increase();" value="increase"/>
+<input type="button" onclick="decrease();" value="decrease"/>-->
+<div style = "width:50%;;overflow-x:scroll;overflow-y:hidden;border:1px solid #dadada" class = "grid">
+  <table border = "0" cellpadding = "0" cellspacing = "0" id="table">
+      <thead>
+      <tr>
+               <th class = "fixed" id="column1" align="center"><span>column</span></th>
+               <th class = "fixed" ><span>column22</span></th>
+               <th class = "fixed"><span>column333</span></th>
+               <th><span>column4444</span></th>
+               <th><span>column55555</span></th>
+               <th><span>columne666666</span></th>
+               <th><span>column7777777</span></th>
+               <th><span>column8</span></th>
+               <th><span>column9</span></th>
+      </tr></thead>
+      <tbody>
+           <tr>
+               <td class = "fixed" align="center"><span>columnValue</span></td>
+               <td class = "fixed" ><span>columnValue22</span></td>
+               <td class = "fixed"><span>columnValue333</span></td>
+               <td><span>columnValue4444</span></td>
+               <td><span>columnValue55555</span></td>
+               <td><span>columnValue666666</span></td>
+               <td><span>columnValue7777777</span></td>
+               <td><span>columnValue8</span></td>
+               <td><span>columnValue9</span></td>
+           </tr></tbody>
+  </table>
+</div>
+<script>
+    var position = $("table").offset();
+$(".grid").scroll(function(){
+    if(this.scrollLeft >= 0 && $(this).children("table.fixed").length == 0){
+        var $this = $(this), table = $this.children("table"),fixedTable = table.clone().addClass("fixed").css({
+            left : position.left,
+            top : position.top
+        });
+        fixedTable.find("td").not(".fixed").remove();
+        fixedTable.find("th").not(".fixed").remove();
+        $this.append(fixedTable);
+    }else if(this.scrollLeft == 0){
+        //如果调整了冻结列的宽度，在移除之前需要对真实列宽度进行设置
+
+
+        $("table.fixed").remove();
+    }
+});
+</script>
+</body>
+</html>

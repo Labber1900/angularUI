@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang = "en">
+  <meta charset = "UTF-8">
+  <title></title>
+  <script type = "text/javascript" src = "../js/libs/require-2.1.14.min.js"></script>
+  <script type = "text/javascript" src = "../js/libs/require.main.js"></script>
+</head>
+<body style="padding: 16px;" ng-controller="controller">
+    <datagrid datas="datas">
+        <cell fixed field = "name" title = "名称"></cell>
+        <cell fixed field = "sex" title = "性别"></cell>
+        <cell fixed field = "age" title = "年龄"></cell>
+        <cell field = "father" title = "家庭情况.家庭成员.父亲"></cell>
+        <cell field = "mother" title = "家庭情况.家庭成员.母亲"></cell>
+        <cell field = "spousal" title = "家庭情况.家庭成员.配偶"></cell>
+        <cell field = "address" title = "家庭情况.家庭地址"></cell>
+        <cell field = "tel" title = "家庭情况.电话"></cell>
+        <cell field = "company" title = "工作情况.单位名称"></cell>
+        <cell field = "company-address" title = "工作情况.单位地址"></cell>
+        <cell field = "company-tel" title = "工作情况.单位电话"></cell>
+        <cell field = "money" align = "right" title = "月薪"></cell>
+        <cell field = "education" title = "学历"></cell>
+    </datagrid>
+
+<script>
+    require(["angular","jquery","app"],function(angular,$,app){
+        angular.module("ui",["com.uniparticle"]).controller("controller",function($scope){
+            $scope.result = null;
+            $scope.datas = [
+                {
+                    name: "张三",
+                    sex: "男",
+                    age: 31,
+                    father: "张某某",
+                    mother: "李某",
+                    spousal: "刀某",
+                    address: "辽宁省沈阳市青年大街11号",
+                    tel: "02423784589",
+                    company: "东软集团股份有限公司",
+                    companyAddress: "沈阳市浑南新区新秀街2号",
+                    companyTel: "15889873428",
+                    money: 6200,
+                    education: "大学本科"
+                },
+                {
+                    name: "李四",
+                    sex: "男",
+                    age: 29,
+                    father: "李某某",
+                    mother: "刘某",
+                    spousal: "贾某",
+                    address: "辽宁省沈阳市黄河北大街117号",
+                    tel: "02423894679",
+                    company: "东软集团股份有限公司",
+                    companyAddress: "沈阳市浑南新区新秀街2号",
+                    companyTel: "13834503188",
+                    money: 4500,
+                    education: "大学本科"
+                },
+                {
+                    name: "杨某",
+                    sex: "男",
+                    age: 35,
+                    father: "杨某某",
+                    mother: "李某",
+                    spousal: "夏某",
+                    address: "辽宁省沈阳市沈营路11号",
+                    tel: "02423784589",
+                    company: "东软集团股份有限公司",
+                    companyAddress: "沈阳市浑南新区新秀街2号",
+                    companyTel: "13889104189",
+                    money: 2400,
+                    education: "专科"
+                }
+            ];
+        });
+        $(document.body).ready(function(){
+            angular.bootstrap(document, ['ui']);
+        });
+    });
+</script>
+</body>
+</html>

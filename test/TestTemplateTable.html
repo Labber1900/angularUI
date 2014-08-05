@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang = "en">
+  <meta charset = "UTF-8">
+  <title></title>
+    <script type = "text/javascript" src = "../js/libs/handlebars-v1.3.0.js"></script>
+    <script type = "text/javascript" src = "../js/libs/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<style>
+</style>
+
+<script>
+             var result = [];
+             for (var i = 0; i < 3000; i++) {
+                 var item = {};
+                 for (var j = 1; j <= 40; j++) {
+                     item['column' + j] = "columnValue" + j;
+                 }
+                 result.push(item);
+             }
+             var timer = new Date();
+             $.get("template-table.html", function (tabelTemplate) {
+                 $.get("template-tr.html", function (template) {
+                     Handlebars.registerPartial("tr", template);
+                     $(document.body).html(Handlebars.compile(tabelTemplate)({rows: result}));
+                     var timer2 = new Date();
+
+                     alert((timer2.getTime() - timer.getTime()) / 1000);
+                 });
+             });
+</script>
+</body>
+</html>

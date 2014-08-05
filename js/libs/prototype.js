@@ -1,7 +1,7 @@
 /**
  * Created by obladi on 14-6-18.
  */
-(function(){
+define([],function(){
     if (!Function.prototype.bind) {
         Function.prototype.bind = function(oThis) {
             if (typeof this !== "function") {
@@ -60,4 +60,4 @@
         this.length = from < 0 ? this.length + from : from;
         return this.push.apply(this, rest);
     };
-})();
+});

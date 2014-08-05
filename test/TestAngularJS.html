@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang = "en">
+  <meta charset = "UTF-8">
+  <title></title>
+</head>
+<script type = "text/javascript" src = "../js/libs/angular.min.js"></script>
+<script type="text/javascript" src="../js/libs/bindonce.min.js"></script>
+<body ng-controller = "controller">
+    <table  border = "1" cellpadding = "0" cellspacing = "0">
+          <tr bindonce ng-repeat = "row in rows">
+             <td><a href="#" bo-bind="row.column1" ng-click="t($index,row,'column1')"></a></td>
+             <td><a href="#" bo-bind="row.column2" ng-click="t($index,row,'column2')"></a></td>
+             <td bo-bind="row.column3"></td>
+             <td bo-bind="row.column4"></td>
+             <td bo-bind="row.column5"></td>
+             <td bo-bind="row.column6"></td>
+             <td bo-bind="row.column7"></td>
+             <td bo-bind="row.column8"></td>
+             <td bo-bind="row.column9"></td>
+             <td bo-bind="row.column10"></td>
+
+             <td bo-bind="row.column11"></td>
+             <td bo-bind="row.column12"></td>
+             <td bo-bind="row.column13"></td>
+             <td bo-bind="row.column14"></td>
+             <td bo-bind="row.column15"></td>
+             <td bo-bind="row.column16"></td>
+             <td bo-bind="row.column17"></td>
+             <td bo-bind="row.column18"></td>
+             <td bo-bind="row.column19"></td>
+             <td bo-bind="row.column20"></td>
+
+             <td bo-bind="row.column21"></td>
+             <td bo-bind="row.column22"></td>
+             <td bo-bind="row.column23"></td>
+             <td bo-bind="row.column24"></td>
+             <td bo-bind="row.column25"></td>
+             <td bo-bind="row.column26"></td>
+             <td bo-bind="row.column27"></td>
+             <td bo-bind="row.column28"></td>
+             <td bo-bind="row.column29"></td>
+             <td bo-bind="row.column30"></td>
+
+             <td bo-bind="row.column31"></td>
+             <td bo-bind="row.column32"></td>
+             <td bo-bind="row.column33"></td>
+             <td bo-bind="row.column34"></td>
+             <td bo-bind="row.column35"></td>
+             <td bo-bind="row.column36"></td>
+             <td bo-bind="row.column37"></td>
+             <td bo-bind="row.column38"></td>
+             <td bo-bind="row.column39"></td>
+             <td bo-bind="row.column40"></td>
+          </tr>
+    </table>
+
+<script>
+    var app = angular.module('app', ['com.uniparticle']).controller("controller",function ($scope) {
+        var rows = [];
+        for (var i = 0; i < 1000; i++) {
+            var item = {};
+            for (var j = 1; j <= 40; j++) {
+                item["column" + j] = "columnValue" + i +"/"+j;
+            }
+            rows.push(item);
+        }
+        $scope.rows = rows;
+        $scope.t = function(index,row,field){
+            alert(index);
+            alert(row[field]);
+        }
+
+    });
+</script>
+</body>
+</html>
