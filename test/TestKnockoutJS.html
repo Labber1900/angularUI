@@ -64,10 +64,13 @@
             }
             this.rows.push(item);
         }
-    }
+    };
     var timer = new Date();
-    ko.applyBindings(new vm());
+    var v = new vm();
     var timer2 = new Date();
+    alert((timer2.getTime() - timer.getTime())/1000);
+    ko.applyBindings(v);
+    timer2 = new Date();
     alert((timer2.getTime() - timer.getTime())/1000);
 
 
